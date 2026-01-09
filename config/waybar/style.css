@@ -1,0 +1,292 @@
+/* Keyframes */
+
+@keyframes blink-critical {
+	to {
+		/*color: @white;*/
+		background-color: @critical;
+	}
+}
+
+
+/* Styles */
+
+
+/* Everforest colors (commented out) */
+/*
+@define-color black	#475258;
+@define-color red	#e67e80;
+@define-color green	#a7c080;
+@define-color yellow	#dbbc7f;
+@define-color blue	#7fbbb3;
+@define-color purple	#d699b6;
+@define-color aqua	#83c092;
+@define-color gray	#2d353b;
+@define-color brgray	#475258;
+@define-color brred	#e67e80;
+@define-color brgreen	#a7c080;
+@define-color bryellow	#dbbc7f;
+@define-color brblue	#7fbbb3;
+@define-color brpurple	#d699b6;
+@define-color braqua	#83c092;
+@define-color white	#d3c6aa;
+@define-color bg2	#2d353b;
+*/
+
+/* Nord colors */
+@define-color black	#2e3440;
+@define-color red	#bf616a;
+@define-color green	#a3be8c;
+@define-color yellow	#ebcb8b;
+@define-color blue	#81a1c1;
+@define-color purple	#b48ead;
+@define-color aqua	#8fbcbb;
+@define-color gray	#4c566a;
+@define-color brgray	#4c566a;
+@define-color brred	#bf616a;
+@define-color brgreen	#a3be8c;
+@define-color bryellow	#ebcb8b;
+@define-color brblue	#88c0d0;
+@define-color brpurple	#b48ead;
+@define-color braqua	#8fbcbb;
+@define-color white	#eceff4;
+@define-color bg2	#3b4252;
+
+@define-color warning 	@bryellow;
+@define-color critical	@red;
+@define-color mode	@black;
+@define-color unfocused	@bg2;
+@define-color focused	@braqua;
+@define-color inactive	@purple;
+@define-color sound	@brpurple;
+@define-color network	@purple;
+@define-color memory	@braqua;
+@define-color cpu	@green;
+@define-color temp	@brgreen;
+@define-color layout	@bryellow;
+@define-color battery	@aqua;
+@define-color date	@black;
+@define-color time	@white;
+
+/* Reset all styles */
+* {
+	border: @bg2;
+	border-radius: 2;
+	min-height: 0;
+	margin: 0;
+	padding: 0;
+	box-shadow: none;
+	text-shadow: none;
+	icon-shadow: none;
+}
+
+/* The whole bar */
+#waybar {
+	/* background: rgba(40, 40, 40, 0.8784313725);  #282828e0 */
+	background: @unfocused;
+	color: @white;
+	font-family: IosevkaNerdFont, Siji;
+	font-size: 16pt;
+	font-weight: bold;
+}
+
+/* Each module */
+#battery,
+#clock,
+#cpu,
+#language,
+#memory,
+#mode,
+#network,
+#pulseaudio,
+#temperature,
+#tray,
+#backlight,
+#idle_inhibitor,
+#disk,
+#user,
+#mpris {
+	padding-left: 0pt;
+	padding-right: 0pt;
+}
+
+/* Each critical module */
+#mode,
+#memory.critical,
+#cpu.critical,
+#temperature.critical,
+#battery.critical.discharging {
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-name: blink-critical;
+	animation-duration: 1s;
+}
+
+/* Each warning */
+#network.disconnected,
+#memory.warning,
+#cpu.warning,
+#temperature.warning,
+#battery.warning.discharging {
+	color: @warning;
+}
+
+/* And now modules themselves in their respective order */
+
+/* Current sway mode (resize etc) */
+#mode {
+	color: @white;
+	background: @mode;
+}
+
+/* Workspaces stuff */
+#workspaces button {
+	/*font-weight: bold;*/
+	padding-left: 4pt;
+	padding-right: 4pt;
+	color: @white;
+	background: @unfocused;
+}
+
+/* Inactive (on unfocused output) */
+#workspaces button.visible {
+	color: @blue;
+	background: @unfocused;
+}
+
+/* Active (on focused output) */
+#workspaces button.focused {
+	color: @white;
+	background: @unfocused;
+}
+
+/* Contains an urgent window */
+#workspaces button.urgent {
+	color: @black;
+	background: @warning;
+}
+
+/* Style when cursor is on the button */
+#workspaces button:hover {
+	background: @black;
+	color: @white;
+}
+
+#window {
+	margin-right: 35pt;
+	margin-left: 35pt;
+}
+
+#pulseaudio {
+	background: @unfocused;
+	color: @green;
+}
+
+#network {
+	background: @unfocused;
+	color: @white;
+}
+
+#memory {
+	background: @unfocused;
+	color: @yellow;
+}
+
+#cpu {
+	background: @unfocused;
+	color: @purple;
+}
+
+#temperature {
+	background: @unfocused;
+	color: @black;
+}
+
+#language {
+	background: @unfocused;
+	color: @black;
+}
+
+#battery {
+	background: @unfocused;
+	color: @white;
+}
+
+#tray {
+	background: @date;
+}
+
+#clock.date {
+	background: @unfocused;
+	color: @aqua;
+}
+
+#clock.time {
+	background: @unfocused;
+	color: @blue;
+}
+
+#custom-arrow1 {
+	font-size: 11pt;
+	color: @time;
+	background: @date;
+}
+
+#custom-arrow2 {
+	font-size: 11pt;
+	color: @date;
+	background: @layout;
+}
+
+#custom-arrow3 {
+	font-size: 11pt;
+	color: @layout;
+	background: @battery;
+}
+
+#custom-arrow4 {
+	font-size: 11pt;
+	color: @battery;
+	background: @temp;
+}
+
+#custom-arrow5 {
+	font-size: 11pt;
+	color: @temp;
+	background: @cpu;
+}
+
+#custom-arrow6 {
+	font-size: 11pt;
+	color: @cpu;
+	background: @memory;
+}
+
+#custom-arrow7 {
+	font-size: 11pt;
+	color: @memory;
+	background: @network;
+}
+
+#custom-arrow8 {
+	font-size: 11pt;
+	color: @network;
+	background: @sound;
+}
+
+#custom-arrow9 {
+	font-size: 11pt;
+	color: @sound;
+	background: transparent;
+}
+
+#custom-arrow10 {
+	font-size: 11pt;
+	color: @unfocused;
+	background: transparent;
+}
+
+#custom-workspace-begin {
+  color: @white;
+  background: @unfocused;
+}
