@@ -1,0 +1,14 @@
+anki
+brave-bin
+burpsuite
+gnu-netcat
+jefferson-git
+neofetch
+opera
+python-frida-tools
+rustdesk
+slack-desktop
+spotify
+visual-studio-code-bin
+xf86-video-vmware
+yay-bin
